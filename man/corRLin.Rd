@@ -42,9 +42,7 @@
 }
 
 \seealso{
-   \code{\link{corClasses}},
-   \code{\link[nlme]{Initialize.corStruct}},
-   \code{\link[nlme]{summary.corStruct}}
+   \code{\link{corClasses}}
 }
 
 \examples{

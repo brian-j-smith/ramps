@@ -32,7 +32,7 @@
 }
 
 \note{
-   Users may define their own \code{corStruct} classes by specifying a \code{constructor} function and, at a minimum, methods for the functions \code{corMatrix} and \code{coef}.
+   Users may define their own \code{corRStruct} classes by specifying a \code{constructor} function and, at a minimum, methods for the functions \code{corMatrix} and \code{coef}.
 }
 
 \author{

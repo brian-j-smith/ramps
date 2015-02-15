@@ -1,8 +1,8 @@
 ################################################################################
-# corStruct method functions
+# corRStruct method functions
 ################################################################################
 
-Initialize.corStruct <- function(object, data, ...)
+Initialize.corRStruct <- function(object, data, ...)
 {
    form <- formula(object)
    ## obtaining the groups information, if any
@@ -19,7 +19,7 @@ Initialize.corStruct <- function(object, data, ...)
 }
 
 
-Dim.corStruct <- function(object, groups, ...)
+Dim.corRStruct <- function(object, groups, ...)
 {
    if (missing(groups)) return(attr(object, "Dim"))
    ugrp <- unique(groups)
@@ -35,7 +35,7 @@ Dim.corStruct <- function(object, groups, ...)
 }
 
 
-print.corStruct <- function(x, ...)
+print.corRStruct <- function(x, ...)
 {
    aux <- coef(x)
    if (length(aux) > 0) {
@@ -56,7 +56,7 @@ Initialize.corSpatial <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -73,7 +73,7 @@ Initialize.corSpatial <- function(object, data, ...)
 Dim.corSpatial <- function(object, groups, ...)
 {
    if (missing(groups)) return(attr(object, "Dim"))
-   val <- Dim.corStruct(object, groups)
+   val <- Dim.corRStruct(object, groups)
    val[["start"]] <-
       c(0, cumsum(val[["len"]] * (val[["len"]] - 1)/2)[-val[["M"]]])
    ## will use third component of Dim list for spClass
@@ -223,7 +223,7 @@ corRExp <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRExp", "corSpatial", "corStruct")
+   class(value) <- c("corRExp", "corSpatial", "corRStruct")
 
    value
 }
@@ -241,7 +241,7 @@ corRExpwr <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, 0, Inf, 2, 1, 3), ncol=3,
       dimnames = list(c("range", "shape"), c("lower", "upper", "type")))
-   class(value) <- c("corRExpwr", "corSpatial", "corStruct")
+   class(value) <- c("corRExpwr", "corSpatial", "corRStruct")
 
    value
 }
@@ -252,7 +252,7 @@ Initialize.corRExpwr <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -278,7 +278,7 @@ corRGaus <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRGaus", "corSpatial", "corStruct")
+   class(value) <- c("corRGaus", "corSpatial", "corRStruct")
    value
 }
 
@@ -295,7 +295,7 @@ corRGneit <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRGneit", "corSpatial", "corStruct")
+   class(value) <- c("corRGneit", "corSpatial", "corRStruct")
    value
 }
 
@@ -312,7 +312,7 @@ corRLin <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRLin", "corSpatial", "corStruct")
+   class(value) <- c("corRLin", "corSpatial", "corRStruct")
    value
 }
 
@@ -329,7 +329,7 @@ corRMatern <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, 0, Inf, 2, 1, 3), ncol=3,
       dimnames = list(c("range", "scale"), c("lower", "upper", "type")))
-   class(value) <- c("corRMatern", "corSpatial", "corStruct")
+   class(value) <- c("corRMatern", "corSpatial", "corRStruct")
    value
 }
 
@@ -339,7 +339,7 @@ Initialize.corRMatern <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -365,7 +365,7 @@ corRCauchy <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRCauchy", "corSpatial", "corStruct")
+   class(value) <- c("corRCauchy", "corSpatial", "corRStruct")
    value
 }
 
@@ -382,7 +382,7 @@ corRSpher <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRSpher", "corSpatial", "corStruct")
+   class(value) <- c("corRSpher", "corSpatial", "corRStruct")
    value
 }
 
@@ -399,7 +399,7 @@ corRWave <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRWave", "corSpatial", "corStruct")
+   class(value) <- c("corRWave", "corSpatial", "corRStruct")
    value
 }
 
@@ -413,7 +413,7 @@ Initialize.corSpatioTemporal <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -431,7 +431,7 @@ Initialize.corSpatioTemporal <- function(object, data, ...)
 Dim.corSpatioTemporal <- function(object, groups, ...)
 {
    if (missing(groups)) return(attr(object, "Dim"))
-   val <- Dim.corStruct(object, groups)
+   val <- Dim.corRStruct(object, groups)
    val[["start"]] <-
       c(0, cumsum(val[["len"]] * (val[["len"]] - 1)/2)[-val[["M"]]])
    ## will use third component of Dim list for spClass
@@ -596,7 +596,7 @@ corRExp2 <- function(value = numeric(0), form = ~ 1,
    attr(value, "bounds") <- matrix(c(0, 0, 0, Inf, Inf, Inf, 1, 1, 2), ncol=3,
       dimnames = list(c("spatial range", "temporal range", "interaction"),
                       c("lower", "upper", "type")))
-   class(value) <- c("corRExp2", "corSpatioTemporal", "corStruct")
+   class(value) <- c("corRExp2", "corSpatioTemporal", "corRStruct")
 
    value
 }
@@ -607,7 +607,7 @@ Initialize.corRExp2 <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -638,7 +638,7 @@ corRExpwr2 <- function(value = numeric(0), form = ~ 1,
       dimnames = list(c("spatial range", "spatial shape", "temporal range",
                         "temporal shape", "interaction"),
                       c("lower", "upper", "type")))
-   class(value) <- c("corRExpwr2", "corSpatioTemporal", "corStruct")
+   class(value) <- c("corRExpwr2", "corSpatioTemporal", "corRStruct")
 
    value
 }
@@ -649,7 +649,7 @@ Initialize.corRExpwr2 <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -680,7 +680,7 @@ corRExpwr2Dt <- function(value = numeric(0), form = ~ 1,
                                      1, 3, 1, 2), ncol=3,
       dimnames = list(c("spatial range", "spatial shape", "temporal range",
                         "interaction"), c("lower", "upper", "type")))
-   class(value) <- c("corRExpwr2Dt", "corSpatioTemporal", "corStruct")
+   class(value) <- c("corRExpwr2Dt", "corSpatioTemporal", "corRStruct")
 
    value
 }
@@ -691,7 +691,7 @@ Initialize.corRExpwr2Dt <- function(object, data, ...)
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
    }
-   object <- Initialize.corStruct(object, data)
+   object <- Initialize.corRStruct(object, data)
 
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -710,7 +710,7 @@ Initialize.corRExpwr2Dt <- function(object, data, ...)
 Dim.corRExpwr2Dt <- function(object, groups, ...)
 {
    if (missing(groups)) return(attr(object, "Dim"))
-   val <- Dim.corStruct(object, groups)
+   val <- Dim.corRStruct(object, groups)
    val[["start"]] <-
       c(0, cumsum(val[["len"]] * (val[["len"]] - 1)/2)[-val[["M"]]])
    ## will use third component of Dim list for spClass
