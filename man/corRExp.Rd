@@ -28,7 +28,7 @@
 }
 
 \value{
-   Object of class \code{'corRExp'}, also inheriting from class \code{'corSpatial'}, representing an exponential spatial correlation structure.
+   Object of class \code{'corRExp'}, also inheriting from class \code{'corRSpatial'}, representing an exponential spatial correlation structure.
 }
 
 \references{

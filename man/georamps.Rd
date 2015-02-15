@@ -20,7 +20,7 @@
 
    \item{random}{optional one-sided formula of the form \code{~ 1 | g}, specifying random intercepts for groups defined by the factor \code{g}. Several grouping variables may be simultaneously specified, separated by the \code{*} operator, as in \code{~ 1 | g1 * g2 * g3}. In such cases, the levels of each variable are pasted together and the resulting factor used to group the observations.  Missing \code{NA} values may be given in the grouping variable to omit random effects for the associated measurements.}
 
-   \item{correlation}{\code{'corSpatial'} object describing the spatial correlation structure.  See the \code{corRClasses} documentation for a listing of the available structures.}
+   \item{correlation}{\code{'corRSpatial'} object describing the spatial correlation structure.  See the \code{corRClasses} documentation for a listing of the available structures.}
 
    \item{data}{optional data frame containing the variables named in \code{fixed}, \code{random}, \code{correlation}, \code{weights}, \code{variance}, and \code{subset}.}
 
@@ -55,7 +55,7 @@
    \item{etype}{grouping factor for the measurement error variances.}
    \item{weights}{weights used in the fitting process.}
    \item{kmat}{matrix for mapping the spatial parameters to the observed data.}
-   \item{correlation}{specified \code{'corSpatial'} object for the spatial correlation structure.}
+   \item{correlation}{specified \code{'corRSpatial'} object for the spatial correlation structure.}
    \item{coords}{matrix of unique coordinates for the measurement and grid sites.}
    \item{ztype}{grouping factor for the spatial variances.}
    \item{wmat}{matrix for mapping the random effects to the observed data.}

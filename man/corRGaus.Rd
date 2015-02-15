@@ -28,7 +28,7 @@
 }
 
 \value{
-   Object of class \code{'corRGaus'}, also inheriting from class \code{'corSpatial'}, representing a Gaussian spatial correlation structure.
+   Object of class \code{'corRGaus'}, also inheriting from class \code{'corRSpatial'}, representing a Gaussian spatial correlation structure.
 }
 
 \references{

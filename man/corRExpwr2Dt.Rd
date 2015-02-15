@@ -28,7 +28,7 @@
 }
 
 \value{
-   Object of class \code{'corRExpwr2Dt'}, also inheriting from class \code{'corSpatial'}, representing a non-separable spatial correlation structure.
+   Object of class \code{'corRExpwr2Dt'}, also inheriting from class \code{'corRSpatial'}, representing a non-separable spatial correlation structure.
 }
 
 \references{

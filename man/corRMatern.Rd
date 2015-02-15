@@ -28,7 +28,7 @@
 }
 
 \value{
-   Object of class \code{'corRMatern'}, also inheriting from class \code{'corSpatial'}, representing a Matern spatial correlation structure.
+   Object of class \code{'corRMatern'}, also inheriting from class \code{'corRSpatial'}, representing a Matern spatial correlation structure.
 }
 
 \references{

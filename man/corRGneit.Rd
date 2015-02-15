@@ -28,7 +28,7 @@
 }
 
 \value{
-   Object of class \code{'corRGneit'}, also inheriting from class \code{'corSpatial'}, representing the Gneiting spatial correlation structure.
+   Object of class \code{'corRGneit'}, also inheriting from class \code{'corRSpatial'}, representing the Gneiting spatial correlation structure.
 }
 
 \references{

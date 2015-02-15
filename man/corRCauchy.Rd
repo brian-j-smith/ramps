@@ -28,7 +28,7 @@
 }
 
 \value{
-   Object of class \code{'corRCauchy'}, also inheriting from class \code{'corSpatial'}, representing a rational quadratic spatial correlation structure.
+   Object of class \code{'corRCauchy'}, also inheriting from class \code{'corRSpatial'}, representing a rational quadratic spatial correlation structure.
 }
 
 \references{

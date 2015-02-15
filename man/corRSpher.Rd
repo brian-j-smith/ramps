@@ -28,7 +28,7 @@
 }
 
 \value{
-   An object of class \code{'corRSpher'}, also inheriting from class \code{'corSpatial'}, representing a spherical spatial correlation structure.
+   An object of class \code{'corRSpher'}, also inheriting from class \code{'corRSpatial'}, representing a spherical spatial correlation structure.
 }
 
 \references{

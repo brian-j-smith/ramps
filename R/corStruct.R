@@ -48,10 +48,10 @@ print.corRStruct <- function(x, ...)
 
 
 ################################################################################
-# corSpatial method functions
+# corRSpatial method functions
 ################################################################################
 
-Initialize.corSpatial <- function(object, data, ...)
+Initialize.corRSpatial <- function(object, data, ...)
 {
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
@@ -70,7 +70,7 @@ Initialize.corSpatial <- function(object, data, ...)
 }
 
 
-Dim.corSpatial <- function(object, groups, ...)
+Dim.corRSpatial <- function(object, groups, ...)
 {
    if (missing(groups)) return(attr(object, "Dim"))
    val <- Dim.corRStruct(object, groups)
@@ -86,7 +86,7 @@ Dim.corSpatial <- function(object, groups, ...)
 }
 
 
-getCovariate.corSpatial <- function(object, form = formula(object), data)
+getCovariate.corRSpatial <- function(object, form = formula(object), data)
 {
    covar <- attr(object, "covariate")
 
@@ -122,7 +122,7 @@ getCovariate.corSpatial <- function(object, form = formula(object), data)
       }
 
       if (attr(covar, "minD") == 0) {
-         stop("Cannot have zero distances in \"corSpatial\"")
+         stop("Cannot have zero distances in \"corRSpatial\"")
       }
    }
 
@@ -130,7 +130,7 @@ getCovariate.corSpatial <- function(object, form = formula(object), data)
 }
 
 
-corMatrix.corSpatial <- function(object, covariate = getCovariate(object),
+corMatrix.corRSpatial <- function(object, covariate = getCovariate(object),
    corr = TRUE, ...)
 {
    if (data.class(covariate) == "list") {
@@ -177,7 +177,7 @@ corMatrix.corSpatial <- function(object, covariate = getCovariate(object),
 }
 
 
-corFactor.corSpatial <- function(object, ...)
+corFactor.corRSpatial <- function(object, ...)
 {
    val <- corMatrix(object, corr = FALSE, ...)
    lD <- attr(val, "logDet")
@@ -190,7 +190,7 @@ corFactor.corSpatial <- function(object, ...)
 }
 
 
-coef.corSpatial <- function(object, ...)
+coef.corRSpatial <- function(object, ...)
 {
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -202,7 +202,7 @@ coef.corSpatial <- function(object, ...)
 }
 
 
-"coef<-.corSpatial" <- function(object, ..., value)
+"coef<-.corRSpatial" <- function(object, ..., value)
 {
    if (!all(inbounds(value, attr(object, "bounds")))) stop()
    object[] <- value
@@ -223,7 +223,7 @@ corRExp <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRExp", "corSpatial", "corRStruct")
+   class(value) <- c("corRExp", "corRSpatial", "corRStruct")
 
    value
 }
@@ -241,7 +241,7 @@ corRExpwr <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, 0, Inf, 2, 1, 3), ncol=3,
       dimnames = list(c("range", "shape"), c("lower", "upper", "type")))
-   class(value) <- c("corRExpwr", "corSpatial", "corRStruct")
+   class(value) <- c("corRExpwr", "corRSpatial", "corRStruct")
 
    value
 }
@@ -278,7 +278,7 @@ corRGaus <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRGaus", "corSpatial", "corRStruct")
+   class(value) <- c("corRGaus", "corRSpatial", "corRStruct")
    value
 }
 
@@ -295,7 +295,7 @@ corRGneit <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRGneit", "corSpatial", "corRStruct")
+   class(value) <- c("corRGneit", "corRSpatial", "corRStruct")
    value
 }
 
@@ -312,7 +312,7 @@ corRLin <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRLin", "corSpatial", "corRStruct")
+   class(value) <- c("corRLin", "corRSpatial", "corRStruct")
    value
 }
 
@@ -329,7 +329,7 @@ corRMatern <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, 0, Inf, 2, 1, 3), ncol=3,
       dimnames = list(c("range", "scale"), c("lower", "upper", "type")))
-   class(value) <- c("corRMatern", "corSpatial", "corRStruct")
+   class(value) <- c("corRMatern", "corRSpatial", "corRStruct")
    value
 }
 
@@ -365,7 +365,7 @@ corRCauchy <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRCauchy", "corSpatial", "corRStruct")
+   class(value) <- c("corRCauchy", "corRSpatial", "corRStruct")
    value
 }
 
@@ -382,7 +382,7 @@ corRSpher <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRSpher", "corSpatial", "corRStruct")
+   class(value) <- c("corRSpher", "corRSpatial", "corRStruct")
    value
 }
 
@@ -399,16 +399,16 @@ corRWave <- function(value = numeric(0), form = ~ 1,
    attr(value, "radius") <- radius
    attr(value, "bounds") <- matrix(c(0, Inf, 1), ncol=3,
       dimnames = list("range", c("lower", "upper", "type")))
-   class(value) <- c("corRWave", "corSpatial", "corRStruct")
+   class(value) <- c("corRWave", "corRSpatial", "corRStruct")
    value
 }
 
 
 ################################################################################
-# corSpatioTemporal method functions
+# corRSpatioTemporal method functions
 ################################################################################
 
-Initialize.corSpatioTemporal <- function(object, data, ...)
+Initialize.corRSpatioTemporal <- function(object, data, ...)
 {
    if (!is.null(attr(object, "covariate"))) { # already initialized
       return(object)
@@ -428,7 +428,7 @@ Initialize.corSpatioTemporal <- function(object, data, ...)
 }
 
 
-Dim.corSpatioTemporal <- function(object, groups, ...)
+Dim.corRSpatioTemporal <- function(object, groups, ...)
 {
    if (missing(groups)) return(attr(object, "Dim"))
    val <- Dim.corRStruct(object, groups)
@@ -442,7 +442,7 @@ Dim.corSpatioTemporal <- function(object, groups, ...)
 }
 
 
-getCovariate.corSpatioTemporal <- function(object, form = formula(object), data)
+getCovariate.corRSpatioTemporal <- function(object, form = formula(object), data)
 {
    covar <- attr(object, "covariate")
 
@@ -467,7 +467,7 @@ getCovariate.corSpatioTemporal <- function(object, form = formula(object), data)
       }
 
       if (nrow(covar) > nrow(unique(covar))) {
-         stop("Cannot have zero distances in \"corSpatioTemporal\"")
+         stop("Cannot have zero distances in \"corRSpatioTemporal\"")
       }
 
       if (is.null(getGroupsFormula(form))) { # no groups
@@ -507,7 +507,7 @@ getCovariate.corSpatioTemporal <- function(object, form = formula(object), data)
 }
 
 
-corMatrix.corSpatioTemporal <- function(object, covariate = getCovariate(object),
+corMatrix.corRSpatioTemporal <- function(object, covariate = getCovariate(object),
    corr = TRUE, ...)
 {
    if (data.class(covariate) == "list") {
@@ -549,7 +549,7 @@ corMatrix.corSpatioTemporal <- function(object, covariate = getCovariate(object)
 }
 
 
-corFactor.corSpatioTemporal <- function(object, ...)
+corFactor.corRSpatioTemporal <- function(object, ...)
 {
    val <- corMatrix(object, corr = FALSE, ...)
    lD <- attr(val, "logDet")
@@ -562,7 +562,7 @@ corFactor.corSpatioTemporal <- function(object, ...)
 }
 
 
-coef.corSpatioTemporal <- function(object, ...)
+coef.corRSpatioTemporal <- function(object, ...)
 {
    val <- as.vector(object)
    if (length(val) == 0) {
@@ -574,7 +574,7 @@ coef.corSpatioTemporal <- function(object, ...)
 }
 
 
-"coef<-.corSpatioTemporal" <- function(object, ..., value)
+"coef<-.corRSpatioTemporal" <- function(object, ..., value)
 {
    if (!all(inbounds(value, attr(object, "bounds")))) stop()
    object[] <- value
@@ -596,7 +596,7 @@ corRExp2 <- function(value = numeric(0), form = ~ 1,
    attr(value, "bounds") <- matrix(c(0, 0, 0, Inf, Inf, Inf, 1, 1, 2), ncol=3,
       dimnames = list(c("spatial range", "temporal range", "interaction"),
                       c("lower", "upper", "type")))
-   class(value) <- c("corRExp2", "corSpatioTemporal", "corRStruct")
+   class(value) <- c("corRExp2", "corRSpatioTemporal", "corRStruct")
 
    value
 }
@@ -638,7 +638,7 @@ corRExpwr2 <- function(value = numeric(0), form = ~ 1,
       dimnames = list(c("spatial range", "spatial shape", "temporal range",
                         "temporal shape", "interaction"),
                       c("lower", "upper", "type")))
-   class(value) <- c("corRExpwr2", "corSpatioTemporal", "corRStruct")
+   class(value) <- c("corRExpwr2", "corRSpatioTemporal", "corRStruct")
 
    value
 }
@@ -680,7 +680,7 @@ corRExpwr2Dt <- function(value = numeric(0), form = ~ 1,
                                      1, 3, 1, 2), ncol=3,
       dimnames = list(c("spatial range", "spatial shape", "temporal range",
                         "interaction"), c("lower", "upper", "type")))
-   class(value) <- c("corRExpwr2Dt", "corSpatioTemporal", "corRStruct")
+   class(value) <- c("corRExpwr2Dt", "corRSpatioTemporal", "corRStruct")
 
    value
 }
