@@ -1,5 +1,5 @@
-\name{corClasses}
-\alias{corClasses}
+\name{corRClasses}
+\alias{corRClasses}
 
 \title{Spatial Correlation Structure Classes}
 

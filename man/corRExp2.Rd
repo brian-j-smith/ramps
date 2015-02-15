@@ -40,7 +40,7 @@
 }
 
 \seealso{
-   \code{\link{corClasses}}
+   \code{\link{corRClasses}}
 }
 
 \examples{

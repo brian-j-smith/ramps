@@ -20,7 +20,7 @@
 
    \item{random}{optional one-sided formula of the form \code{~ 1 | g}, specifying random intercepts for groups defined by the factor \code{g}. Several grouping variables may be simultaneously specified, separated by the \code{*} operator, as in \code{~ 1 | g1 * g2 * g3}. In such cases, the levels of each variable are pasted together and the resulting factor used to group the observations.  Missing \code{NA} values may be given in the grouping variable to omit random effects for the associated measurements.}
 
-   \item{correlation}{\code{'corSpatial'} object describing the spatial correlation structure.  See the \code{corClasses} documentation for a listing of the available structures.}
+   \item{correlation}{\code{'corSpatial'} object describing the spatial correlation structure.  See the \code{corRClasses} documentation for a listing of the available structures.}
 
    \item{data}{optional data frame containing the variables named in \code{fixed}, \code{random}, \code{correlation}, \code{weights}, \code{variance}, and \code{subset}.}
 
@@ -73,7 +73,7 @@
    Brian Smith \email{brian-j-smith@uiowa.edu}, Jun Yan \email{jun.yan@uconn.edu}, and Kate Cowles \email{kate-cowles@uiowa.edu}}
 
 \seealso{
-   \code{\link{corClasses}},
+   \code{\link{corRClasses}},
    \code{\link{ramps.control}},
    \code{\link[coda]{mcmc}},
    \code{\link{DIC.ramps}},
