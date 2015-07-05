@@ -1,5 +1,11 @@
 import(coda, fields, maps, Matrix, nlme, methods)
-importFrom(stats, window)
+
+importFrom("graphics", "lines", "points")
+importFrom("grDevices", "trans3d")
+importFrom("stats", ".getXlevels", "as.dist", "coef", "delete.response",
+           "dunif", "formula", "model.frame", "model.matrix", "model.response",
+           "model.weights", "na.omit", "na.pass", "reformulate", "rexp",
+           "rgamma", "rnorm", "runif", "terms", "window")
 
 export(
    corRExp,
