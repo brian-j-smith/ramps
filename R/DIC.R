@@ -25,7 +25,7 @@ DIC.ramps <- function(object, ...)
          BETA <- c(BETA, as.vector(object$kmat %*% crossprod(object$z, w)))
 
          sites <- unique.sites(object$kmat)
-         xk1mat <- cBind(object$xmat, sites$map)
+         xk1mat <- cbind(object$xmat, sites$map)
          k2mat <- sites$coords
 
          val <- mpdbetaz(params, object$y, xk1mat, k2mat, object$wmat,

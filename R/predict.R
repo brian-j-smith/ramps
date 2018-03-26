@@ -60,7 +60,7 @@ predict.ramps <- function(object, newdata,
 
    ## K matrix components needed for mpdensity
    val <- unique.sites(object$kmat)
-   xk1mat <- cBind(object$xmat, val$map)
+   xk1mat <- cbind(object$xmat, val$map)
    k2mat <- val$coords
 
    ## Constants for the sampling algorithm

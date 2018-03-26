@@ -161,8 +161,8 @@ mpdbetaz <- function(theta, y, xk1mat, k2mat, wmat, spcor, etype, ztype, retype,
    linvX.r1 <- crossprod(uiSIGMA.11, xk1mat)
    linvX.22 <- as(backsolve(uSIGMA.22, diag(-1, nrow(uSIGMA.22)),
                             transpose = TRUE), "dtCMatrix")
-   linvX <- rBind(linvX.r1, cBind(Matrix(0, nz, p), linvX.22))
-   linvY <- rBind(as(crossprod(uiSIGMA.11, y), "dgCMatrix"), Matrix(0, nz, 1))
+   linvX <- rbind(linvX.r1, cbind(Matrix(0, nz, p), linvX.22))
+   linvY <- rbind(as(crossprod(uiSIGMA.11, y), "dgCMatrix"), Matrix(0, nz, 1))
 
    XtSiginvX <- crossprod(linvX)
    XtSiginvY <- crossprod(linvX, linvY)
@@ -212,9 +212,9 @@ mpdbetaz2 <- function(theta, y, xk1mat, k2mat, wmat, spcor, etype, ztype, retype
 
    linvX.r1 <- liSIGMA.11 %*% xk1mat
    linvX.22 <- liSIGMA.22 %*% Diagonal(x = rep(-1, nz))
-   linvX <- rBind(linvX.r1,
-                  cBind(Matrix(0, nz, p), as(linvX.22, "sparseMatrix")))
-   linvY <- rBind(as(liSIGMA.11 %*% y, "sparseMatrix"), Matrix(0, nz, 1))
+   linvX <- rbind(linvX.r1,
+                  cbind(Matrix(0, nz, p), as(linvX.22, "sparseMatrix")))
+   linvY <- rbind(as(liSIGMA.11 %*% y, "sparseMatrix"), Matrix(0, nz, 1))
 
    XtSiginvX <- crossprod(linvX)
    XtSiginvY <- crossprod(linvX, linvY)

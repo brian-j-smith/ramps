@@ -84,7 +84,7 @@ ramps.engine <- function(y, xmat, kmat, wmat, spcor, etype, ztype, retype,
       zidx <- p + idx
 
       ## Construct matrices for mpdensity
-      xk1mat <- cBind(xmat, sites$map)
+      xk1mat <- cbind(xmat, sites$map)
       k2mat <- sites$coords
 
    } else {
@@ -105,7 +105,7 @@ ramps.engine <- function(y, xmat, kmat, wmat, spcor, etype, ztype, retype,
          args$kmat <- kmat
       },
       mpdbetaz = {
-         args$xk1mat <- cBind(xmat, sites$map)
+         args$xk1mat <- cbind(xmat, sites$map)
          args$k2mat <- sites$coords
       }
    )
@@ -153,7 +153,7 @@ ramps.engine <- function(y, xmat, kmat, wmat, spcor, etype, ztype, retype,
               BETA0 <- head(BETA, p)
               if(length(curreval$betahat) > p) {
                 BETA0 <- if (nzp != ncol(kmat)) NULL
-                         else rBind(BETA0, kmat %*% tail(BETA, -p))
+                         else rbind(BETA0, kmat %*% tail(BETA, -p))
               }
             },
             {
