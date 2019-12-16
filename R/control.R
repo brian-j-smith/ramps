@@ -54,7 +54,7 @@ ramps.control <- function(iter = 1000, beta, sigma2.e, phi, sigma2.z, sigma2.re,
   else if (any(sigma2.re$tuning <= 0))
     stop("sigma2.re tuning parameters must be > 0")
 
-  if (!(class(z.monitor) %in% c("logical", "matrix", "data.frame")))
+  if (!(data.class(z.monitor) %in% c("logical", "matrix", "data.frame")))
     stop("'z.monitor' must be a logical vector or a dataset of coordinates")
 
   fnames <- list(params = NULL, z = NULL)
@@ -114,7 +114,7 @@ param <- function(init, prior = c("flat", "invgamma", "normal", "uniform", "user
       }
       if (any(dim(val) != n)) stop("Non-comformable normal variance matrix")
          val <- try(chol(val))
-      if (class(val) == "try-error")
+      if (is(val, "try-error"))
         stop("Normal variance hyperparameter must be positive definite")
       retval$precision <- chol2inv(val)
       if (any(na <- is.na(init)))
@@ -158,7 +158,7 @@ param <- function(init, prior = c("flat", "invgamma", "normal", "uniform", "user
 
 is.param <- function(x)
 {
-  class(x) == "param"
+  is(x, "param")
 }
 
 

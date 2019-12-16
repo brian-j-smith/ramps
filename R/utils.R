@@ -41,7 +41,7 @@ window.predict.ramps <- function(x, iter, ...)
 
 expand.chain <- function(object, n)
 {
-   if (class(object) != "ramps") stop("Object must be of class 'ramps'")
+   if (!is(object, "ramps")) stop("Object must be of class 'ramps'")
 
    nr <- nrow(object$params)
    control <- object$control
