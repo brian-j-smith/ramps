@@ -159,10 +159,15 @@ mpdbetaz <- function(theta, y, xk1mat, k2mat, wmat, spcor, etype, ztype, retype,
    uSIGMA.22 <- chol(as.matrix(tcrossprod(KMAT %*% corMatrix(spcor), KMAT)))
 
    linvX.r1 <- crossprod(uiSIGMA.11, xk1mat)
-   linvX.22 <- as(backsolve(uSIGMA.22, diag(-1, nrow(uSIGMA.22)),
-                            transpose = TRUE), "dtCMatrix")
+   linvX.22 <- as(as(
+      backsolve(uSIGMA.22, diag(-1, nrow(uSIGMA.22)), transpose = TRUE),
+      "triangularMatrix"
+   ), "CsparseMatrix")
    linvX <- rbind(linvX.r1, cbind(Matrix(0, nz, p), linvX.22))
-   linvY <- rbind(as(crossprod(uiSIGMA.11, y), "dgCMatrix"), Matrix(0, nz, 1))
+   linvY <- rbind(
+      as(crossprod(uiSIGMA.11, y), "CsparseMatrix"),
+      Matrix(0, nz, 1)
+   )
 
    XtSiginvX <- crossprod(linvX)
    XtSiginvY <- crossprod(linvX, linvY)

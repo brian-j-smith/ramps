@@ -95,12 +95,12 @@ mpdpred <- function(params, Y, X, k22mat, wmat, spcor, etype, ztype, retype,
    linvX.r1 <- if (ny1 > 0) crossprod(uiSIGMA.11, X[1:ny1,])
                else Matrix(0, 0, ncol(X))
    linvX.r2 <- crossprod(uiSIGMA.22, X[(ny1 + 1):(ny1 + ny2 + nzp),])
-   linvX <- rbind(as(linvX.r1, "dgCMatrix"), as(linvX.r2, "dgCMatrix"))
+   linvX <- rbind(as(linvX.r1, "CsparseMatrix"), as(linvX.r2, "CsparseMatrix"))
 
    linvY.r1 <- if (ny1 > 0) crossprod(uiSIGMA.11, Y[1:ny1])
                else Matrix(0, 0, 1)
    linvY.r2 <- crossprod(uiSIGMA.22, Y[(ny1 + 1):(ny1 + ny2 + nzp)])
-   linvY <- rbind(as(linvY.r1, "dgCMatrix"), as(linvY.r2, "dgCMatrix"))
+   linvY <- rbind(as(linvY.r1, "CsparseMatrix"), as(linvY.r2, "CsparseMatrix"))
 
    XtSiginvX <- crossprod(linvX)
    XtSiginvY <- crossprod(linvX, linvY)
@@ -178,12 +178,12 @@ mpdpred2 <- function(params, Y, X, k22mat, wmat, spcor, etype, ztype, retype,
    linvX.r1 <- if (ny1 > 0) crossprod(uiSIGMA.11, X[1:ny1,])
                else Matrix(numeric(0), 0, ncol(X))
    linvX.r2 <- crossprod(uiSIGMA.22, X[(ny1 + 1):(ny1 + ny2 + nzp),])
-   linvX <- rbind(as(linvX.r1, "dgCMatrix"), as(linvX.r2, "dgCMatrix"))
+   linvX <- rbind(as(linvX.r1, "CsparseMatrix"), as(linvX.r2, "CsparseMatrix"))
 
    linvY.r1 <- if (ny1 > 0) crossprod(uiSIGMA.11, Y[1:ny1])
                else Matrix(numeric(0), 0, 1)
    linvY.r2 <- crossprod(uiSIGMA.22, Y[(ny1 + 1):(ny1 + ny2 + nzp)])
-   linvY <- rbind(as(linvY.r1, "dgCMatrix"), as(linvY.r2, "dgCMatrix"))
+   linvY <- rbind(as(linvY.r1, "CsparseMatrix"), as(linvY.r2, "CsparseMatrix"))
 
    XtSiginvX <- crossprod(linvX)
    XtSiginvY <- crossprod(linvX, linvY)
