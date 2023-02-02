@@ -275,18 +275,17 @@ inbounds <- function(x, bounds)
 
 unique.sites <- function(x)
 {
-   type <- class(x)
+   src <- as.matrix(x)
+   x <- x[which(!duplicated(src)), , drop = FALSE]
+   dest <- as.matrix(x)
 
-   x <- as.matrix(x)
-   coords <- unique(x)
-
-   n <- ncol(x)
-   y <- merge(cbind(x, 1:nrow(x)), cbind(coords, 1:nrow(coords)), by = 1:n)
+   n <- ncol(src)
+   y <- merge(cbind(src, 1:nrow(src)), cbind(dest, 1:nrow(dest)), by = 1:n)
    idx <- y[order(y[, n+1]), n+2]
-   map <- Matrix(0, length(idx), nrow(coords))
+   map <- Matrix(0, length(idx), nrow(dest))
    map[seq(idx) + nrow(map) * (idx - 1)] <- 1
 
-   list(coords = as(coords, type), map = map)
+   list(coords = x, map = map)
 }
 
 
